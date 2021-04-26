@@ -292,6 +292,7 @@ fn main() {
     let output_opt = match (vendor, model) {
         ("System76", "addw1") => Some("eDP-1"),
         ("System76", "addw2") => Some("eDP-1"),
+        ("Dell Inc.", "") => Some("eDP-1"),
         _ => None,
     };
 
@@ -411,7 +412,7 @@ fn main() {
 
         while current != requested {
             current = requested;
-            /* Smooth transition (may require use of xlib for performance)
+            /* Smooth transition (may require use of xlib for performance */)
             if current == !0 {
                 current = requested;
             } else if current < requested {
@@ -419,7 +420,6 @@ fn main() {
             } else if current > requested {
                 current -= 1;
             }
-            */
 
             xrandr_output_brightness(&mut display, &root_window, output, if current == max {
                 None
